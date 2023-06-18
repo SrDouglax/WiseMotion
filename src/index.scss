@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body, #root {
+    width: 100%;
+    height: 100%;
+}
+
+#root {
+    // Colors
+    --primary: #fff;
+    --secundary: #eeeee9;
+
+    // Stroke widths
+    --stroke-m: 3px; // mediun
+
+    // Stroke colors
+    --stroke-m-primary: #000;
+
+    // Shadow
+    --shadow-distance: 6px;
+    --shadow-color: var(--stroke-m-primary);
+
+    // Corner radius
+    --c-radius-m: 5px
+}
