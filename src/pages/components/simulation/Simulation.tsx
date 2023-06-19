@@ -14,12 +14,13 @@ interface SimulationProps {
 }
 
 function Simulation({isPaused, setIsPaused, WorldObjects, Rect}:SimulationProps) {
+  
   return (
     <div className="simulation">
       <div className="simulationCanvas">
         <Canvas>
           <Physics gravity={[0, -10, 0]} isPaused={isPaused} size={10}>
-            {WorldObjects.map((e: any) => {
+            {WorldObjects.map((e: WorldObject) => {
               return (
                 <Rect
                   key={e.name}
@@ -29,8 +30,8 @@ function Simulation({isPaused, setIsPaused, WorldObjects, Rect}:SimulationProps)
                   }}
                   PhisProps={{
                     position: [
-                      e.components.positionXY?.x || 0,
-                      e.components.positionXY?.y || 0,
+                      e.components.positionXY?.vec2.x || 0,
+                      e.components.positionXY?.vec2.y || 0,
                       0,
                     ],
                     type: e.components.rect?.moviment || "Dynamic",
