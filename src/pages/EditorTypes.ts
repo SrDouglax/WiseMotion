@@ -16,6 +16,7 @@ export interface RectProps {
 type WorldObjectType = "rect" | "circle";
 
 export interface RectComponent {
+  name: "Retangulo";
   color?: string;
   moviment?: "Dynamic" | "Static";
   size?: {
@@ -25,41 +26,50 @@ export interface RectComponent {
 }
 
 export interface PositionComponent {
-  x?: number;
-  y?: number;
+  name: "Posição";
+  vec2: {
+    x?: number;
+    y?: number;
+  }
   fixed?: boolean;
 }
 
 export interface VelocityByXYComponent {
+  name: "Velocidade por XY";
+  vec2: {
+    x?: number;
+    y?: number;
+  }
+  fixed?: boolean;
+}
+
+export interface AccelerationByXYComponent {
+  name: 'Aceleração por XY';
   x?: number;
   y?: number;
   fixed?: boolean;
 }
 
-export interface AcelerationByXYComponent {
-  x?: number;
-  y?: number;
-  fixed?: boolean;
-}
-
-export interface AcelerationByAngleComponent {
+export interface AccelerationByAngleComponent {
+  name: "Aceleração por Angulo";
   angle?: number;
   fixed?: boolean;
 }
 
-// type ObjectComponentTypes =
-//   | RectComponent
-//   | PositionComponent
-//   | AcelerationByXYComponent
-//   | AcelerationByXYComponent
-//   | AcelerationByAngleComponent;
+export type ObjectComponentTypes =
+  | RectComponent
+  | PositionComponent
+  | AccelerationByXYComponent
+  | AccelerationByXYComponent
+  | AccelerationByAngleComponent;
 
+export type ComponentTypes = 'rect' | 'positionXY' | 'velocityXY' | 'AccelerationXY' | 'AccelerationAngle'
 export interface ObjectComponents {
   rect?: RectComponent;
   positionXY?: PositionComponent;
   velocityXY?: VelocityByXYComponent;
-  AcelerationXY?: AcelerationByXYComponent;
-  AcelerationAngle?: AcelerationByAngleComponent;
+  AccelerationXY?: AccelerationByXYComponent;
+  AccelerationAngle?: AccelerationByAngleComponent;
 }
 
 export interface WorldObject {

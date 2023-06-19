@@ -13,13 +13,9 @@ function Editor() {
       name: "WorldObject",
       type: "rect",
       components: {
-        rect: { size: { w: 1, h: 1 }, color: "#f44" },
-        positionXY: { x: -4, y: -2.5 },
-        velocityXY: {
-          x: 0.5,
-          y: undefined,
-          fixed: true,
-        },
+        rect: { name: "Retangulo", size: { w: 1, h: 1 }, color: "#f44" },
+        positionXY: { name: "Posição", vec2: {x: -4, y: -2.5} },
+        velocityXY: { name: "Velocidade por XY", vec2: {x: 0.5, y: undefined}, fixed: true },
       },
     },
     {
@@ -27,14 +23,12 @@ function Editor() {
       type: "rect",
       components: {
         rect: {
+          name: "Retangulo",
           size: { w: 100, h: 2 },
           color: "#3a3",
           moviment: "Static",
         },
-        positionXY: {
-          x: 0,
-          y: -4,
-        },
+        positionXY: { name: "Posição", vec2: {x: 0, y: -4} },
       },
     },
   ]);
@@ -119,11 +113,11 @@ function Editor() {
             const unsub = elementsApi[i].velocity.subscribe((value) => {
               currentVelocity = value;
             });
-            console.log(worldObject?.components?.velocityXY?.y || currentVelocity[1]);
+            console.log(worldObject?.components?.velocityXY?.vec2.y || currentVelocity[1]);
 
             elementsApi[i].velocity.set(
-              worldObject?.components?.velocityXY?.x || currentVelocity[0],
-              worldObject?.components?.velocityXY?.y || currentVelocity[1],
+              worldObject?.components?.velocityXY?.vec2.x || currentVelocity[0],
+              worldObject?.components?.velocityXY?.vec2.y || currentVelocity[1],
               0
             );
             unsub();
@@ -147,7 +141,7 @@ function Editor() {
           Rect={Rect}
         />
         <div className="resizer2"></div>
-        <Inspector />
+        <Inspector WorldObjects={WorldObjects}/>
       </div>
     </div>
   );
