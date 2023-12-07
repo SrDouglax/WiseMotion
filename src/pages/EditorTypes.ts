@@ -17,20 +17,24 @@ type WorldObjectType = "rect" | "circle";
 
 export interface RectComponent {
   name: "Retangulo";
-  color?: string;
+  color: string;
   moviment?: "Dynamic" | "Static";
-  size?: {
-    w?: number;
-    h?: number;
-  };
+  size?: SizeField;
+}
+
+export interface SizeField {
+  w: number;
+  h: number;
+}
+
+export interface Vec2Field {
+  x: number;
+  y: number;
 }
 
 export interface PositionComponent {
   name: "Posição";
-  vec2: {
-    x?: number;
-    y?: number;
-  }
+  vec2: Vec2Field;
   fixed?: boolean;
 }
 
@@ -44,9 +48,11 @@ export interface VelocityByXYComponent {
 }
 
 export interface AccelerationByXYComponent {
-  name: 'Aceleração por XY';
-  x?: number;
-  y?: number;
+  name: "Aceleração por XY";
+  vec2: {
+    x?: number;
+    y?: number;
+  };
   fixed?: boolean;
 }
 
@@ -55,6 +61,9 @@ export interface AccelerationByAngleComponent {
   angle?: number;
   fixed?: boolean;
 }
+
+export type FieldTypes = 'size' | 'vec2' | 'color'
+export type ObjectFieldTypes = SizeField | Vec2Field
 
 export type ObjectComponentTypes =
   | RectComponent

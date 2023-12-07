@@ -8,7 +8,7 @@ import { WorldObject, RectProps } from "./EditorTypes";
 
 function Editor() {
   const [isPaused, setIsPaused] = useState(true);
-  const [WorldObjects] = useState<WorldObject[]>([
+  const [WorldObjects, setWorldObjects] = useState<WorldObject[]>([
     {
       name: "WorldObject",
       type: "rect",
@@ -32,6 +32,7 @@ function Editor() {
       },
     },
   ]);
+  console.log(WorldObjects)
 
   let elementsApi: PublicApi[] = [];
 
@@ -113,7 +114,6 @@ function Editor() {
             const unsub = elementsApi[i].velocity.subscribe((value) => {
               currentVelocity = value;
             });
-            console.log(worldObject?.components?.velocityXY?.vec2.y || currentVelocity[1]);
 
             elementsApi[i].velocity.set(
               worldObject?.components?.velocityXY?.vec2.x || currentVelocity[0],
@@ -141,7 +141,7 @@ function Editor() {
           Rect={Rect}
         />
         <div className="resizer2"></div>
-        <Inspector WorldObjects={WorldObjects}/>
+        <Inspector WorldObjects={WorldObjects} setWorldObjects={setWorldObjects}/>
       </div>
     </div>
   );
